@@ -1,0 +1,170 @@
+Big data according to IBM, any data which can be characterized by 3V's is considered to be a big data.
+- Volume :- volume of the data should be huge which our traditional system can not handle. For ex - 2.5 quintillion bytes of data created each day.
+- Vareity :- data can be structured (RDBMS Databases & My SQL), unstructured(CSV, XML, JSON) and  semi structured data(Audio, Video, Image, Log Files). 
+- Velocity :- The speed the new data is coming. For ex - we are already handling 1 terabyte of data but if new data is coming with the increased space 
+, so no data can be discarded as all the data is very important. The velocity might be higher is some days and velocity should be low on some days but the system should tackle it.
+
+Using Big data we need to handle all these three kinds of data.
+
+4th V stands for Veracity  - It stands for nature of the data where we says data has poor quality/ unclean data.Let's say we have data which has lot of null values or lot of missing values which is reffered as Veracity.
+
+Why Bigdata 
+-------------------
+We able to process/ crunch huge amount of data where we can not able to do it by using traditional system then it can store this big data as well.
+
+To process huge amount of data first we need to store this huge data as traditional system is not capable to store.
+
+The system should be scalable(i.e. if the data requirement grows then the system can able to scale the data) before to store this huge data.
+
+Designing good Bigdata system
+---------------------------------------------- 
+storage(store massive amount of data), Process(process it in a timely manner), scale(scale easily as the data grows)
+
+Two ways to design a system
+-------------------------------------------
+- Monolithic System :- One powerful big system which is holding lot of resources
+
+- Distributed System :- Many system but ideally smaller systems coming together to solve a purpose. Each system ideally or technically called as the node and together is called a cluster. For ex - a 6 nodes consider to be a one cluster.
+
+Resouces 
+--------------
+RAM(8 GB Memory), Hard Disk(1 TB storage), CPU (Quard core compute)
+
+Better System
+---------------------
+In Monolithic system, we can't keep on dumping resources after single point. For ex - in laptop we can't upgrade RAM after 32 GB. So, monolithic systems are not scalable because when we double the resources the preformance should be double. That means, the monolithic systems are the utilizing the resources in efficient manner. Therefore, monolithic systems can not able to scale after a certain point.
+
+On the other hand, we have distributed system with 6 nodes then it is very easy to double the performance by bring another 6 machines to the cluster. Therefore, this is  a scalable system i.e. it can scale linerly.
+
+All bigdata system are based on distributed architecture that means it can scale linerly.
+
+In Monolithic architecture is called vertical scaling which is not the true scaling. That means after a certain point there is a dip in performance. However, in Distributed architecture is called horizontal scaling/ true scaling because we keep on adding more and more machines. That is why all good bigdata systems are based on distributed architecture.
+
+Hadoop
+-----------
+Hadoop is a framework to solve bigdata problems.
+
+How Hadoop evolved 
+-------------------------------
+Google in the early 2000 realised that whatever processing they have to do to make the existing web search work won't scale based on monolithic architecture because at that time based on monolithic architecture and they felt with the growing needs the monolithic architecture won't help to scale. At that time, they felt the distributed computing and in the year 2003, Google released a paper to describe how to store large datasets but the implementation is not released.
+
+For ex - 10 terrabyte of data can't to store in one machine. So, Google give an idea how to divide this 10 terrabyte of data into multiple small small parts and give to different machines.
+
+Google gave the paper related to storage in order how to store huge amount of data on a cluster of machines. That means, we might have 10 node cluster and divide the 10 terrabyte into 10 parts or more small part and give each part to a separate machine. This is what they talk about in this paper i.e. GFS paper. It stands for Google File System. 
+
+In 2004, Google said they have already stored the data in a cluster of machines in a scalable manner and now they worried about processing. Previously, when data is sitting in one machine then we access java, .Net etc to process the data but now data is sitting in multiple machines.So, traditional programming model do not work. In order to process large dataset available in distributed machines Google released another paper on distributed processing is called as MapReduce.
+
+GFS - Distributed Storage (2003 paper given by Google)
+MapReduce - Distributed Processing (2004 paper given by Google)
+
+In the year 2006, Yahoo took these papers given by Google and implemented it. The implementation of GFS was named as HDFS(Hadoop Distributed File System), the implementation of MapReduce was named as MapReduce(unchanged).
+
+Two core components very first version of Hadoop 1.0
+------------------------------------------------------------------------------
+HDFS - Distributed Storage 
+MapReduce - Distributed Processing 
+
+In the year 2009, Hadoop came under Apache Software Foundation and became open source. That means, anyone can see the source code and anyone can contribute it. Suppose, tomorrow if we see any issue in code then we can report it, solve it or quote for it.
+
+In the year 2013, Hadoop2.0 was released to provide major performance enhancements.
+
+Difference between Hadoop 1.0 and Hadoop 2.0
+----------------------------------------------------------------------
+Hadoop 1.0 - The architech felt, the MapReduce is very bulky component and it get bottlenecked there. Suppose, MapReduce is associated with 100 activities then they thought to take out 40 activities and give it to some other component.So, that is what they did.
+
+MapReduce + HDFS
+
+Hadoop 2.0 - YARN was introduced. 
+MapReduce + YARN + HDFS
+That means, YARN took some of the capabilities of MapReduce and also it has got some of its own new capabilities.
+
+OS - Windows which is used to managed the resources in efficient manner in a graceful way.
+
+YARN
+---------
+-It stands for Yet Another Resource Negotiator
+- Think YARN is sitting on 100 systems/ nodes in managing the resources in a efficient manner as a pool of recources. That means, if someone need recources then they will contact YARN because YARN is mainly responsible for resource management(i.e. YARN is resource manager/ operating system in a distributed environment)
+
+Hadoop Ecosystem
+----------------------------
+Hadoop Core - YARN + MapReduce + HDFS.
+There are the bunch of ecosystem technologies surrounded around Hadoop core. Some of the crucial and important ecosystem technologies we should know are HIVE, HBASE, SQOOP, OOZIE, PIG(Not Important these days), APACHE SPARK(very very important).
+The processing unit used in Hadoop Core is MapReduce. The code written in MapReduce is mostly in java language.
+
+Note - If someone do not know java then HIVE comes in rescue if someone knows SQL. HIVE is nothing but the wrapper of top of MapReduce. That means, write SQL in HIVE and internally it converts java MapReduce code and execute the job on cluster i.e. all the complexities will be hidden from developer. So, HIVE is very important and very crucial in the entire course. HIVE is more like SQL. We will be able to query your data gracefully. HIVE 
+was developed by Facebook.
+
+Datawarehouse tool built on top of Apache Hadoop for providing data query and analysis.
+
+HIVE is actually not SQL it is HQL i.e. HIVE Query Language and it is very similar to SQL. HIVE is nothing but to query your data in HDFS.
+
+Questions on HIVE 
+------------------------------
+Partitioning in HIVE
+Bucketing in HIVE
+MAP Side Join
+Bucket Map Join
+File Formats
+Vectorization
+How to create HIVE own UDF
+
+SQOOP
+-----------
+Sqoop is to transfer data from traditional databases to your Hadoop component. A command line interface application for transfering data between relational databases and Hadoop.
+
+If you want to bring data from SQl or Oracle to Hadoop i.e. HDFS we required Sqoop. And, even if our data is in HDFS and you want to send it to databases you can do that. We can do this by using the command line interface. 
+
+SQOOP is for data injection or data migration you can think in this way.
+
+Note - SQOOP is also a MapReduce. SQOOP is a special MapReduce job where only mappers work.
+
+PIG 
+------
+PIG is a scripting language for data manupulation and transform unstructured data into structured format.
+PIG used to solve two purpose 
+- To clean the data.
+- To convert unstructured data into structured form.
+
+Like HIVE, PIG is also internally a MapReduce. It is an abstraction of MapReduce.
+
+HBASE 
+------------
+HBASE is column oriented NOSQL database. Like Mongo DB, HBASE is also a NOSQL database which runs on top of Hadoop.
+
+OOZIE
+-----------
+OOZIE is nothing but the workflow scheduler which will help you to manage or schedule your job.
+
+Apache Spark
+---------------------
+It is one of the hottest technology of today.
+Spark is general purpose in memory compute engine.
+
+In Hadoop Cluster, HDFS(storage unit) + MapReduce(Compute Engine) + 	YARN(Resource Manager).
+Spark is the alternative/replacement of MapReduce.
+ 
+Spark and MapReduce can be comparable. In Hadoop, MapReduce is the computational unit. SPARK is also computational unit.
+If someone compare SPARK with Hadoop then it is worng because SPARK gives only computaional unit and Hadoop give HDFS +MapReduce+YARN.
+
+Now, in modern times, Hadoop cluster is 
+
+HDFS(storage unit) + SPARK(Compute Engine) + YARN(Resource Manager).
+
+SPARK requires two things to worh with
+- Plug it with any storage system
+  Local Storage/HDFS/Amazon S3
+
+- Plug it with any Ressource Manager
+   YARN/ MESOS/ KUBERNETES
+
+Note - SPARK can run with Hadoop also. That means, if we are using Amazon S3 as storage and Kubernetes as resource manager then Hadoop has nothing to do with SPARK. SPARK is always not dependent on Hadoop, however, we can combine YARN + HDFS + SPARK.
+
+Current Industry Trend - SPARK(Compute) + HDFS (Storage) + YARN (Resource Manager). However, the Storage and Resource Manager is taken from Hadoop.
+
+SPARK code can be written in Scala, Java, Python and R. Moreover, R is for Data Scientist. The most famous choce for Data Engineers is Scala.
+
+Spark with Scala is the top choice. Reason being Spark Itsekf written in Scala and moreover, it gives you the best performance. The second choice is Python with Spark and that is what it is called PySpark.
+
+
+
+PIG is not being used now a days. Instead of PIG, Apache Spark is being used and it can do 100 other things.
